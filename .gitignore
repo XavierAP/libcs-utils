@@ -1,0 +1,14 @@
+# Local only: 2 underscore prefix
+**/__*
+
+### Visual Studio
+*.*proj
+
+**/.vs/
+bin/
+obj/
+packages/
+*.user
+*.resx
+**/Properties/Resources.*
+**/Properties/PublishProfiles/
