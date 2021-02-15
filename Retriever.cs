@@ -4,7 +4,12 @@ using System.Threading.Tasks;
 
 namespace JP.Utils
 {
-	public class Retriever
+	public interface IRetriever
+	{
+		Task<string> Load(string url);
+	}
+
+	public class Retriever : IRetriever
 	{
 		/// <summary>Gets data via HTTP.</summary>
 		/// <exception cref="Exception" />

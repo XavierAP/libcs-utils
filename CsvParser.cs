@@ -2,7 +2,12 @@
 
 namespace JP.Utils
 {
-	public class CsvParser
+	public interface ICsvParser
+	{
+		string[][] Parse(string text);
+	}
+
+	public class CsvParser : ICsvParser
 	{
 		/// <param name="rowSeparator">Extra characters e.g. \r don't hurt even if not present.</param>
 		public CsvParser(string columnSeparator = ",", string rowSeparator = "\r\n")
@@ -15,6 +20,7 @@ namespace JP.Utils
 			RowSeparator,
 			ColSeparator;
 
+		/// <summary>Splits CSV into values by rows and columns.</summary>
 		public string[][] Parse(string text)
 		{
 			var rows = text.Split(RowSeparator, StringSplitOptions.RemoveEmptyEntries);
