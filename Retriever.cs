@@ -4,16 +4,15 @@ using System.Threading.Tasks;
 
 namespace JP.Utils
 {
-	/// <summary>Gets data via HTTP and parses it.</summary>
-	public class Retriever<T>
+	public class Retriever
 	{
+		/// <summary>Gets data via HTTP.</summary>
 		/// <exception cref="Exception" />
-		public async Task<T> Load(string url, Func<string, T> parser)
+		public async Task<string> Load(string url)
 		{
 			var response = await new HttpClient().GetAsync(url);
 			response.EnsureSuccessStatusCode();
-			var data = await response.Content.ReadAsStringAsync();
-			return parser(data);
+			return await response.Content.ReadAsStringAsync();
 		}
 	}
 }
