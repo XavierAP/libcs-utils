@@ -9,7 +9,7 @@ namespace JP.Utils
 		public string Text
 		{
 			get => Entry?.Text ??
-				   Label?.Text ?? throw new InvalidProgramException();
+			       Label?.Text ?? throw new InvalidProgramException();
 
 			set { if(Entry != null) Entry.Text = value; }
 		}
