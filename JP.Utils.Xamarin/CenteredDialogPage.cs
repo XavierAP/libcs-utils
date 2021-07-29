@@ -19,8 +19,6 @@ namespace JP.Utils
 			};
 		}
 
-		public void AddElement<T>(T elem)
-			where T : View
-			=> layout.Children.Add(elem);
+		public void AddElement(View elem) => layout.Children.Add(elem);
 	}
 }
