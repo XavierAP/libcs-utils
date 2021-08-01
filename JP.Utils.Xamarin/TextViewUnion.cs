@@ -8,10 +8,20 @@ namespace JP.Utils
 	{
 		public string Text
 		{
-			get => Entry?.Text ??
-			       Label?.Text ?? throw WillNeverHappen();
-
-			set { if(Entry != null) Entry.Text = value; }
+			get
+			{
+				if(Entry != null)
+					return Entry.Text;
+				else if(Label != null)
+					return Label.Text;
+				else
+					throw WillNeverHappen();
+			}
+			set
+			{
+				if(Entry != null)
+					Entry.Text = value;
+			}
 		}
 
 		public View AsView => Entry as View ?? Label ?? throw WillNeverHappen();
