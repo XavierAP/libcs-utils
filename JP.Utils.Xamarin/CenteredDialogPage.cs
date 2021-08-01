@@ -8,14 +8,14 @@ namespace JP.Utils
 
 		public CenteredDialogPage()
 		{
-			layout = new StackLayout
+			Content = new ScrollView
 			{
+				Content = layout = new StackLayout
+				{
+					HorizontalOptions = LayoutOptions.Center,
+				},
 				HorizontalOptions = LayoutOptions.Center,
-			};
-			this.Content = new ScrollView
-			{
-				Content = layout,
-				HorizontalOptions = LayoutOptions.Center,
+				VerticalOptions = LayoutOptions.Center,
 			};
 		}
 
