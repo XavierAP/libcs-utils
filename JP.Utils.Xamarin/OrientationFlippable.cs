@@ -12,13 +12,13 @@ namespace JP.Utils
 
 	public class OrientationFlipBehavior
 	{
-		readonly VisualElement element;
+		readonly VisualElement parent;
 
 		public event Action<Orientation>? Flipped;
 
 		public OrientationFlipBehavior(VisualElement element)
 		{
-			this.element = element;
+			parent = element;
 			element.SizeChanged += OnSizeChanged;
 		}
 		
@@ -39,7 +39,7 @@ namespace JP.Utils
 
 		private void OnSizeChanged(object sender, EventArgs ea)
 		{
-			if(element.Width > element.Height)
+			if(parent.Width > parent.Height)
 				PageOrientation = Orientation.Landscape;
 			else
 				PageOrientation = Orientation.Portrait;
