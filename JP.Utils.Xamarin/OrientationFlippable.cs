@@ -14,7 +14,9 @@ namespace JP.Utils
 	{
 		readonly VisualElement parent;
 
-		public event Action<Orientation>? Flipped;
+		/// <summary>Called at least once as the <see cref="VisualElement"/> is first displayed;
+		/// then every time device orientation is flipped.</summary>
+		public event Action<Orientation>? SetOrChanged;
 
 		public OrientationFlipBehavior(VisualElement element)
 		{
@@ -31,7 +33,7 @@ namespace JP.Utils
 			{
 				if(value == _PageOrientation) return;
 				_PageOrientation = value;
-				Flipped?.Invoke(value);
+				SetOrChanged?.Invoke(value);
 			}
 		}
 		private Orientation _PageOrientation = Orientation.NotSet;
