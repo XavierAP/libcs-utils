@@ -6,6 +6,8 @@ namespace JP.Utils
 {
 	public static class Files
 	{
+		private const string backupExtension = ".backup";
+
 		public static async Task Copy(Stream origin, Stream destination, ushort bufferSize = 32*1024)
 		{
 			if(bufferSize <= 0) throw new ArgumentOutOfRangeException(nameof(bufferSize));
@@ -18,7 +20,7 @@ namespace JP.Utils
 
 		public static void DeleteWithBackup(string filePath)
 		{
-			string backupPath = filePath + ".backup";
+			string backupPath = filePath + backupExtension;
 			File.Delete(backupPath);
 			File.Move(filePath, backupPath);
 		}
@@ -26,7 +28,7 @@ namespace JP.Utils
 		/// <exception cref="FileNotFoundException" />
 		public static void RestoreBackup(string filePath)
 		{
-			string backupPath = filePath + ".backup";
+			string backupPath = filePath + backupExtension;
 			File.Move(backupPath, filePath);
 		}
 
