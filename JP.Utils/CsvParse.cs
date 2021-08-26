@@ -2,6 +2,7 @@
 
 namespace JP.Utils
 {
+	/// <summary>Extension methods to manipulate the output of <see cref="ICsvParser.Parse(string)"/>.</summary>
 	public static class CsvParse
 	{
 		public static int RowCount(this string[][] table) => table.Length - 1;

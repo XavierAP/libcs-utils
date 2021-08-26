@@ -7,6 +7,7 @@ namespace JP.Utils
 		string[][] Parse(string text);
 	}
 
+	/// <summary>Eager processor for CSV with few lines.</summary>
 	public class CsvParser : ICsvParser
 	{
 		/// <param name="rowSeparator">Extra characters e.g. \r don't hurt even if not present.</param>
