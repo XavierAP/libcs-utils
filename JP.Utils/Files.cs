@@ -8,16 +8,6 @@ namespace JP.Utils
 	{
 		private const string backupExtension = ".backup";
 
-		public static async Task Copy(Stream origin, Stream destination, ushort bufferSize = 32*1024)
-		{
-			if(bufferSize <= 0) throw new ArgumentOutOfRangeException(nameof(bufferSize));
-
-			var buffer = new byte[bufferSize];
-			int stride;
-			while(0 < (stride = await origin.ReadAsync(buffer, 0, buffer.Length)))
-				await destination.WriteAsync(buffer, 0, stride);
-		}
-
 		public static void DeleteWithBackup(string filePath)
 		{
 			string backupPath = filePath + backupExtension;
@@ -32,21 +22,20 @@ namespace JP.Utils
 			File.Move(backupPath, filePath);
 		}
 
-		public static async Task<IOException> TryCopy(Stream origin, string destinationFilePath)
+		public static SystemException
+		TryCopy(string originPath, string destinationPath)
 		{
-			bool replacing = File.Exists(destinationFilePath);
+			bool replacing = File.Exists(destinationPath);
 			if(replacing)
-				DeleteWithBackup(destinationFilePath);
+				DeleteWithBackup(destinationPath);
 
-			try
-			{
-				using(var streamTo = new FileStream(destinationFilePath, FileMode.CreateNew))
-					await Copy(origin, streamTo);
+			try {
+				File.Copy(originPath, destinationPath);
 			}
-			catch(IOException err)
+			catch(SystemException err)
 			{
-				File.Delete(destinationFilePath); // in case it was created but not completed
-				RestoreBackup(destinationFilePath);
+				File.Delete(destinationPath); // in case it was created but not completed
+				RestoreBackup(destinationPath);
 				return err;
 			}
 			return null;
