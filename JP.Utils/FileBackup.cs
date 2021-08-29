@@ -3,7 +3,7 @@ using System.IO;
 
 namespace JP.Utils
 {
-	public static class Files
+	public static class FileBackup
 	{
 		private const string backupExtension = ".backup";
 
@@ -14,7 +14,6 @@ namespace JP.Utils
 			File.Move(filePath, backupPath);
 		}
 
-		/// <exception cref="FileNotFoundException" />
 		public static void RestoreBackup(string filePath)
 		{
 			string backupPath = filePath + backupExtension;
