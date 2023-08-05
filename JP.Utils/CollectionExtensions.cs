@@ -25,10 +25,10 @@ namespace JP.Utils
 
 		public static int GetFastCount<T>(this IEnumerable<T> collection)
 		{
-			if (collection is IReadOnlyCollection<T> immutable)
-				return immutable.Count;
-			else if (collection is ICollection<T> mutable)
-				return mutable.Count;
+			if (collection is IReadOnlyCollection<T> a)
+				return a.Count;
+			else if (collection is ICollection<T> b)
+				return b.Count;
 			else
 				throw new ArgumentException($"{nameof(CollectionExtensions)}.{nameof(GetFastCount)} does not support type {collection.GetType().FullName}");
 		}
@@ -45,10 +45,10 @@ namespace JP.Utils
 		public static bool TryGetValue<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> dict,
 			TKey key, [MaybeNullWhen(false)] out TValue value)
 		{
-			if (dict is IReadOnlyDictionary<TKey, TValue> immutable)
-				return immutable.TryGetValue(key, out value);
-			else if (dict is IDictionary<TKey, TValue> mutable)
-				return mutable.TryGetValue(key, out value);
+			if (dict is IReadOnlyDictionary<TKey, TValue> a)
+				return a.TryGetValue(key, out value);
+			else if (dict is IDictionary<TKey, TValue> b)
+				return b.TryGetValue(key, out value);
 			else
 				throw new ArgumentException($"{nameof(CollectionExtensions)}.{nameof(TryGetValue)} does not support type {dict.GetType().FullName}");
 		}
