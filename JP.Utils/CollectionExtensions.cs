@@ -23,6 +23,7 @@ namespace JP.Utils
 				dict[entry.Key] = entry.Value;
 		}
 
+		/// <summary>O(1)</summary>
 		public static int GetFastCount<T>(this IEnumerable<T> collection)
 		{
 			if (collection is IReadOnlyCollection<T> a)
@@ -33,6 +34,7 @@ namespace JP.Utils
 				throw new ArgumentException($"{nameof(CollectionExtensions)}.{nameof(GetFastCount)} does not support type {collection.GetType().FullName}");
 		}
 
+		/// <summary>O(N)</summary>
 		public static bool IsEqualContentTo<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> dict,
 			IEnumerable<KeyValuePair<TKey, TValue>> other)
 			where TValue : IEquatable<TValue>
