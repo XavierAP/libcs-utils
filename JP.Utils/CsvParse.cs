@@ -5,13 +5,13 @@ namespace JP.Utils
 	/// <summary>Extension methods to manipulate the output of <see cref="ICsvParser.Parse(string)"/>.</summary>
 	public static class CsvParse
 	{
-		public static int RowCount(this string[][] table) => table.Length - 1;
-
 		public static string[] Headers(this string[][] table) => table[0];
 
 		/// <param name="row">1-based</param>
 		public static string[] Row(this string[][] table, int row) => table[row];
 		
+		public static int RowCount(this string[][] table) => table.Length - 1;
+
 		/// <exception cref="IndexOutOfRangeException" />
 		public static int IndexOf(this string[] words, string word)
 		{
